@@ -3,7 +3,7 @@ NAME =	pipex
 CC 	 =	clang
 
 INCLUDE = -I ./includes
-CFLAGS = -Wall -Wextra -Werror $(INCLUDE)
+CFLAGS = -Wall -Wextra $(INCLUDE)
 
 SRC = pipex.c
 OBJ = $(SRC:%.c=%.o)
@@ -12,7 +12,9 @@ OBJ = $(SRC:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	rm -rf $(NAME)
+	make all -C ./libft
+	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
