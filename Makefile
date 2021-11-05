@@ -32,3 +32,8 @@ push:fclean
 	read -p "Message:" message; \
 	git commit -m "$$message"; \
 	git push
+
+c:clean
+	rm -rf test
+	$(CC) $(CFLAGS) $(SRC) ./libft/libft.a -o test
+	./test file0 ls -la file2

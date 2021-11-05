@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/04 05:09:06 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/05 02:01:55 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ typedef struct s_filedes
 	int	i;
 }	t_filedes;
 
-typedef struct s_data
+typedef struct s_info
 {
 	t_filedes	i;
-	int			empty;
-}	t_data;
+	char		*string_path;
+	char		**split_path;
+}	t_info;
 
 #endif
