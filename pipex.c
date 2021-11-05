@@ -6,29 +6,18 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/05 02:01:33 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/05 04:09:22 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-#include <stdio.h>
-
-void	find_path(t_info *data, char **envp)
+//SOMENTE PARA TESTES
+void	PRINT_STRUC(t_info *data)
 {
-	int	i;
-
-	i = 0;
-	while (envp[i])
-	{
-		if (ft_memcmp(envp[i], "PATH=", 5) == 0)
-		{
-			data->string_path = ft_strdup(ft_strchr(envp[i], '=') + 1);
-			break ;
-		}
-		i++;
-	}
-	return ;
+	printf("fd  in %d\n", data->i.fd_infile);
+	printf("fd out %d\n", data->i.fd_outfile);
+	printf("%s\n", data->split_path[0]);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -39,9 +28,9 @@ int	main(int argc, char **argv, char **envp)
 		return (-1);
 	data.i.fd_infile = open(argv[1], O_RDONLY);
 	data.i.fd_outfile = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (data.i.fd_infile < 0 || data.i.fd_outfile < 0)
+	if (data.i.fd_infile < 0 || data.i.fd_outfile < 0 )
 		return (-1);
-	find_path(&data, envp);
-	printf("%s", data.string_path);
+	init_path_array(&data, envp);
+	PRINT_STRUC(&data);
 	return (0);
 }

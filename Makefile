@@ -5,7 +5,7 @@ CC 	 =	clang
 INCLUDE = -I ./includes
 CFLAGS = -Wall -Wextra $(INCLUDE)
 
-SRC = pipex.c
+SRC = pipex.c pipex_utils.c
 OBJ = $(SRC:%.c=%.o)
 
 
