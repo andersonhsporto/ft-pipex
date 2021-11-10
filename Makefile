@@ -35,5 +35,6 @@ push:fclean
 
 c:clean
 	rm -rf test
+	rm -rf file2
 	$(CC) $(CFLAGS) $(SRC) ./libft/libft.a -o test
 	./test file0 "ls -l" "wc -l" file2

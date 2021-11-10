@@ -6,37 +6,32 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/10 02:47:46 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/10 15:35:39 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"pipex.h"
 
-void	child_1(t_info *data)
+void	child_1(t_info *data, int *end)
 {
-	int end[2];
-
 	dup2(data->i.fd_infile, STDIN_FILENO);
 	dup2(end[1], STDOUT_FILENO);
-	close(end[1]);
+	close(data->i.fd_infile);
 	close(end[0]);
 	execve(data->j.path_cmd_1, data->j.cmd_1, data->j.env);
 }
 
-void	child_2(t_info *data, char **envp)
+void	child_2(t_info *data, int *end)
 {
-	int end[2];
-
-	dup2(data->i.fd_infile, STDOUT_FILENO);
-	dup2(end[1], STDIN_FILENO);
+	dup2(end[0], STDIN_FILENO);
+	dup2(data->i.fd_outfile, STDOUT_FILENO);
 	close(end[1]);
-	close(end[0]);
+	close(data->i.fd_outfile);
 	execve(data->j.path_cmd_2, data->j.cmd_2, data->j.env);
 }
 
-void	init_pipe(t_info *data, char **envp)
+void	init_pipe(t_info *data)
 {
-	int status;
 	int	end[2];
 
 	pipe(end);
@@ -44,15 +39,15 @@ void	init_pipe(t_info *data, char **envp)
 	if (data->child1 < 0)
 		return (perror("teste"));
     if (data->child1 == 0)
-		child_1(data);
-	data->child1 = fork();
-	if (data->child1 < 0)
+		child_1(data, end);
+	data->child2 = fork();
+	if (data->child2 < 0)
 		return (perror("Fork: "));
-    if (data->child1 == 0)
-		child_2(data, envp);
-	close(data->i.pipefd[0]);
-	close(data->i.pipefd[1]);
-	waitpid(data->child1, &status, 0);
-	waitpid(data->child2, &status, 0);
+    if (data->child2 == 0)
+		child_2(data, end);
+	close(end[0]);
+	close(end[1]);
+	waitpid(data->child1, NULL, 0);
+	waitpid(data->child2, NULL, 0);
 	return ;
 }

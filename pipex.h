@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/10 02:36:23 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/10 15:33:03 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ typedef struct s_info
 }	t_info;
 
 void	init_path_array(t_info *data, char **envp);
-void	init_pipe(t_info *data, char **envp); //adicionar função para copiar um array de strings
+void	init_pipe(t_info *data); //adicionar função para copiar um array de strings
 
 #endif

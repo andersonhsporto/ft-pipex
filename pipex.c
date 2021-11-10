@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/10 02:45:06 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/10 15:32:52 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	main(int argc, char **argv, char **envp)
 	//printf("%s\n", data.j.path_cmd_2);
 	//printf("%s\n", data.j.cmd_1[1]);
 	//printf("%s\n", data.j.cmd_1[0]);
-	init_pipe(&data, envp);
+	init_pipe(&data);
 	return (0);
 }
