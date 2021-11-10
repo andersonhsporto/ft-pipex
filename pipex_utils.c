@@ -6,11 +6,17 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/09 22:43:38 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/10 00:11:25 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+static void	find_path(t_info *data)
+{
+	
+	return ;
+}
 
 static void	init_path(t_info *data, char *temp_string)
 {
