@@ -5,7 +5,7 @@ CC 	 =	clang
 INCLUDE = -I ./includes
 CFLAGS = -Wall -Wextra $(INCLUDE)
 
-SRC = pipex.c pipex_utils.c
+SRC = pipex.c pipex_utils.c path_utils.c
 OBJ = $(SRC:%.c=%.o)
 
 
@@ -36,4 +36,4 @@ push:fclean
 c:clean
 	rm -rf test
 	$(CC) $(CFLAGS) $(SRC) ./libft/libft.a -o test
-	./test file0 ls -la file2
+	./test file0 "ls -l" "wc -l" file2
