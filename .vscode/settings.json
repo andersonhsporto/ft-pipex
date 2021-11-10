@@ -1,6 +1,15 @@
 {
 	"files.associations": {
 		"pipex.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"array": "c",
+		"deque": "c",
+		"list": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"vector": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"valarray": "c"
 	}
 }
