@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/11 02:15:48 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/11 17:16:55 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_strings
 	char		**cmd_2;
 	char		*path_cmd_1;
 	char		*path_cmd_2;
+	char		*temp_string;
 	char		**env;
 }	t_strings;
 
@@ -52,7 +53,7 @@ typedef struct s_info
 	char		**split_path;
 }	t_info;
 
-void	init_path_array(t_info *data, char **envp);
+void	init_path_array(t_info *data);
 void	init_pipe(t_info *data);
 
 void	error_exit(char *message, int code);
