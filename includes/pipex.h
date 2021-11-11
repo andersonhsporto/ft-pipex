@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/10 15:33:03 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/10 23:01:43 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include "libft/libft.h"
+
+# include "../libft/libft.h"
 
 # include <stdio.h> // REMOVER AO FINAL !!
 
@@ -50,6 +51,6 @@ typedef struct s_info
 }	t_info;
 
 void	init_path_array(t_info *data, char **envp);
-void	init_pipe(t_info *data); //adicionar função para copiar um array de strings
+void	init_pipe(t_info *data);
 
 #endif
