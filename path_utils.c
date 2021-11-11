@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:54:37 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/10 02:31:05 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/11 02:19:05 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	find_path(t_info *data)
 		free(data->j.path_cmd_2);
 		i++;
 	}
-	return ;
 }
 
 static void	init_path(t_info *data, char *temp_string)

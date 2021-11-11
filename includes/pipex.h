@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/10 23:01:43 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/11 02:15:48 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <sys/wait.h>
 
 # include "../libft/libft.h"
+
+# define ARGERROR "Should be executed this way: ./pipex file1 cmd1 cmd2 file2\n"
 
 # include <stdio.h> // REMOVER AO FINAL !!
 
@@ -53,4 +55,5 @@ typedef struct s_info
 void	init_path_array(t_info *data, char **envp);
 void	init_pipe(t_info *data);
 
+void	error_exit(char *message, int code);
 #endif
