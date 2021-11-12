@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:54:37 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/12 01:41:38 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 02:24:42 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	find_path(t_info *data, int i)
 			break ;
 		}
 		free(data->j.path_cmd_1);
-		printf("%s\n", data->split_path[i]);
 		i++;
 	}
 	i = 0;
@@ -66,6 +65,7 @@ void	init_path_array(t_info *data)
 	i = 0;
 	data->cmd_1 = 0;
 	data->cmd_2 = 0;
+	find_shell(data);
 	while (data->j.env[i])
 	{
 		if (ft_memcmp(data->j.env[i], "PATH=", 5) == 0)

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/12 01:27:37 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 01:48:07 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int	main(int argc, char **argv, char *envp[])
 	data.j.env = envp;
 	init_path_array(&data);
 	init_pipe(&data);
-	free_arrays(&data);
+	free_path(&data);
 	return (0);
 }

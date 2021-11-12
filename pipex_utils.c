@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/12 00:43:43 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 02:57:12 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	child_1(t_info *data)
 	close(data->i.pipefd[0]);
 	if (data->cmd_1 == 1)
 		execve(data->j.path_cmd_1, data->j.cmd_1, data->j.env);
+	error_cmd(data, cmd_1);
 	exit(EXIT_FAILURE);
 }
 
@@ -31,7 +32,7 @@ void	child_2(t_info *data)
 	close(data->i.fd_outfile);
 	if (data->cmd_2 == 1)
 		execve(data->j.path_cmd_2, data->j.cmd_2, data->j.env);
-	exit(EXIT_FAILURE);
+	error_cmd(data, cmd_2);
 }
 
 void	init_pipe(t_info *data)
@@ -39,7 +40,7 @@ void	init_pipe(t_info *data)
 	pipe(data->i.pipefd);
 	data->child1 = fork();
 	if (data->child1 < 0)
-		return (perror("teste"));
+		return (perror("Fork: "));
 	if (data->child1 == 0)
 		child_1(data);
 	data->child2 = fork();

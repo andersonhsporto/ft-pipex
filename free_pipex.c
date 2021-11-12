@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 02:28:50 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/11 23:22:54 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 02:21:33 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ static void	free_pointer_array(char	**array)
 	return ;
 }
 
-void	free_arrays(t_info *data)
+void	free_path(t_info *data)
 {
 	free_pointer_array(data->j.cmd_1);
 	free_pointer_array(data->j.cmd_2);
 	free_pointer_array(data->split_path);
 	free(data->j.temp_string);
+	free(data->j.shell);
 	if (data->cmd_1 == 1)
 		free(data->j.path_cmd_1);
 	if (data->cmd_2 == 1)
