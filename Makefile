@@ -6,7 +6,7 @@ INCLUDE = -I ./includes
 CFLAGS = -Wall -Wextra
 
 SRC =	pipex.c pipex_utils.c path_utils.c \
-		error_pipex.c free_pipex.c ft_strtjoin.c
+		error_pipex.c free_pipex.c
 
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

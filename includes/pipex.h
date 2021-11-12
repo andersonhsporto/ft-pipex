@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/12 03:14:03 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 03:18:33 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # include <string.h>
 
-# include "../libft/libft.h"
+# include "../libft2/libft.h"
 
 # define ARGERROR "Should be executed this way: ./pipex file1 cmd1 cmd2 file2\n"
 # define CMDERROR ": command not found\n"
@@ -74,8 +74,7 @@ void	free_path(t_info *data);
 
 void	find_shell(t_info *data);
 
-char	*ft_strtjoin(char *string0, char *string1, char *string2);
-
+//char	*ft_strtjoin(char *string0, char *string1, char *string2);
 
 void	error_cmd(t_info *data, int code);
 #endif
