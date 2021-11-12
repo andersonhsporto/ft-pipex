@@ -1,3 +1,6 @@
 [submodule "libft2"]
 	path = libft2
 	url = https://github.com/andersonhsporto/ft-libft.git
+[submodule "libft"]
+	path = libft
+	url = https://github.com/andersonhsporto/ft-libft.git
