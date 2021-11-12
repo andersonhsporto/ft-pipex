@@ -6,13 +6,13 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 01:15:06 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/12 02:56:54 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 03:10:12 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	*find_shell(t_info *data)
+void	find_shell(t_info *data)
 {
 	int	i;
 
