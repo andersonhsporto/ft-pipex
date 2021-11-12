@@ -42,7 +42,7 @@ c:clean
 	rm -rf test
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) $(SRC) ./libft/libft.a -o test
-	./test file1 "ls -l" "wc -l" file2
+	./test file1 "env_var" "wc -l" file2
 	cat file2
 
 # valgrind:fclean

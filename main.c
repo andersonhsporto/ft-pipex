@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/11 23:57:51 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 01:27:37 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	PRINT_STRUC(t_info *data)
 	//printf("%s\n", data.j.cmd_1[0]);
 }
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char *envp[])
 {
 	t_info	data;
 

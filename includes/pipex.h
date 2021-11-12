@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/11 23:18:59 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 00:53:18 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+
+# include <string.h>
 
 # include "../libft/libft.h"
 
