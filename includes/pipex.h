@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/12 03:10:18 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 03:14:03 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	free_path(t_info *data);
 void	find_shell(t_info *data);
 
 char	*ft_strtjoin(char *string0, char *string1, char *string2);
+
 
 void	error_cmd(t_info *data, int code);
 #endif
