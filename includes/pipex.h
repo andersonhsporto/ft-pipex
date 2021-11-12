@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/11 17:16:55 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/11 23:18:59 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_info
 	pid_t		child1;
 	pid_t		child2;
 	char		**split_path;
+	int			cmd_1;
+	int			cmd_2;
 }	t_info;
 
 void	init_path_array(t_info *data);

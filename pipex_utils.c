@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/11 02:44:02 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/12 00:05:39 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 void	child_1(t_info *data)
 {
-	dup2(data->i.fd_infile, STDIN_FILENO);
 	dup2(data->i.pipefd[1], STDOUT_FILENO);
+	dup2(data->i.fd_infile, STDIN_FILENO);
 	close(data->i.fd_infile);
 	close(data->i.pipefd[0]);
-	execve(data->j.path_cmd_1, data->j.cmd_1, data->j.env);
+	if (data->cmd_1 == 1)
+		execve(data->j.path_cmd_1, data->j.cmd_1, data->j.env);
 }
 
 void	child_2(t_info *data)
 {
-	dup2(data->i.pipefd[0], STDIN_FILENO);
 	dup2(data->i.fd_outfile, STDOUT_FILENO);
+	dup2(data->i.pipefd[0], STDIN_FILENO);
 	close(data->i.pipefd[1]);
 	close(data->i.fd_outfile);
-	execve(data->j.path_cmd_2, data->j.cmd_2, data->j.env);
+	if (data->cmd_2 == 1)
+		execve(data->j.path_cmd_2, data->j.cmd_2, data->j.env);
 }
 
 void	init_pipe(t_info *data)

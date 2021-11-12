@@ -5,7 +5,7 @@ CC 	 =	clang
 INCLUDE = -I ./includes
 CFLAGS = -Wall -Wextra
 
-SRC =	pipex.c pipex_utils.c path_utils.c \
+SRC =	main.c pipex_utils.c path_utils.c \
 		error_pipex.c free_pipex.c
 
 .c.o:
@@ -45,8 +45,14 @@ c:clean
 	./test file1 "ls -l" "wc -l" file2
 	cat file2
 
-valgrind:fclean
-	rm -rf test
-	rm -rf file2
-	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) ./libft/libft.a -o test
-	valgrind --leak-check=full --leak-resolution=med ./test file1 "ls -l" "wc -l" file2
+# valgrind:fclean
+# 	rm -rf test
+# 	rm -rf file2
+# 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) ./libft/libft.a -o test
+# 	valgrind --leak-check=full --leak-resolution=med ./test file1 "ls -l" "wc -l" file2
+
+# error:fclean
+# 	rm -rf test
+# 	rm -rf file2
+# 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) ./libft/libft.a -o test
+# 	valgrind --leak-check=full --leak-resolution=med ./test file1 "casa" "wc" file2
