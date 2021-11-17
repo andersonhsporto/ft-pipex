@@ -6,19 +6,11 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/16 19:37:18 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/17 00:41:14 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"pipex.h"
-
-//SOMENTE TESTES
-void	PRINT_STRUC(t_info *data)
-{
-	printf("fd  in %d\n", data->i.fd_infile);
-	printf("fd out %d\n", data->i.fd_outfile);
-	printf("%s\n", data->split_path[3]);
-}
 
 int	main(int argc, char **argv, char *envp[])
 {
