@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/12 02:57:12 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/17 02:04:00 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	child_2(t_info *data)
 
 void	init_pipe(t_info *data)
 {
+	int		status;
+
 	pipe(data->i.pipefd);
 	data->child1 = fork();
 	if (data->child1 < 0)
@@ -50,7 +52,8 @@ void	init_pipe(t_info *data)
 		child_2(data);
 	close(data->i.pipefd[0]);
 	close(data->i.pipefd[1]);
-	waitpid(data->child1, NULL, 0);
-	waitpid(data->child2, NULL, 0);
+	waitpid(data->child1, &status, 0);
+	waitpid(data->child2, &status, 0);
+	exit(status);
 	return ;
 }
