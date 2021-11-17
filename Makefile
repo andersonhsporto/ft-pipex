@@ -56,4 +56,6 @@ error:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) ./libft/libft.a -o test
 	valgrind --leak-check=full --leak-resolution=med ./test file1 "casa" "wc" file2
-	
+
+test:
+	../pipex-tester/run.sh
