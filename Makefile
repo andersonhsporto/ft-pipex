@@ -48,24 +48,21 @@ push:fclean
 	git commit -m "$$message"; \
 	git push
 
-c:clean
-	rm -rf test
+c:fclean
 	rm -rf file2
-	$(CC) $(CFLAGS) $(INCLUDE) $(SRC) -o test
-	./test file1 "ls -l" "wc -l" file2
+	$(CC) $(CFLAGS) $(INCLUDE) $(SRC) -o $(NAME)
+	./pipex file1 "ls -l" "wc -l" file2
 	cat file2
 
 valgrind:fclean
-	rm -rf test
 	rm -rf file2
-	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o test
-	valgrind --leak-check=full --show-leak-kinds=all ./test file1 "ls -l" "wc -l" file2
+	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all ./pipex file1 "ls -l" "wc -l" file2
 
 error:fclean
-	rm -rf test
 	rm -rf file2
-	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o test
-	valgrind --leak-check=full --leak-resolution=med ./test file1 "casa" "wc" file2
+	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
+	valgrind --leak-check=full --leak-resolution=med ./pipex file1 "casa" "wc" file2
 
 t:
 	../pipex-tester/run.sh
