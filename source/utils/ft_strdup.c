@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtjoin.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/12 02:36:45 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/17 22:45:57 by anhigo-s         ###   ########.fr       */
+/*   Created: 2021/11/18 01:16:01 by anhigo-s          #+#    #+#             */
+/*   Updated: 2021/11/18 01:16:09 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "utils.h"
 
-char	*ft_strtjoin(char *string0, char *string1, char *string2)
+char	*ft_strdup(const char *s1)
 {
-	char	*str;
-	char	*temp_string;
+	char	*string;
+	size_t	i;
 
-	if (!string0 | !string1 | !string2)
-		return (NULL);
-	temp_string = ft_strjoin(string0, string1);
-	str = ft_strjoin(temp_string, string2);
-	free(temp_string);
-	temp_string = NULL;
-	return (str);
+	string = malloc(ft_strlen(s1) + 1);
+	if (string == 0)
+		return (0);
+	else
+	{
+		i = 0;
+		while (i < (ft_strlen (s1) + 1))
+		{
+			string[i] = s1[i];
+			i++;
+		}
+	}
+	return (string);
 }

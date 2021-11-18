@@ -6,22 +6,19 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/18 00:56:10 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/18 01:32:37 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <unistd.h>
 # include <fcntl.h>
-# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-
 # include <string.h>
 
-# include "../libft/libft.h"
+# include "utils.h"
 
 # define ARGERROR "Should be executed this way: ./pipex file1 cmd1 cmd2 file2\n"
 # define CMDERROR ": command not found\n"
@@ -73,16 +70,9 @@ typedef struct s_info
 
 void	init_path_array(t_info *data);
 void	init_pipe(t_info *data);
-
 void	error_exit(char *message, int code);
-
 void	free_path(t_info *data);
-
 void	find_shell(t_info *data);
-
-char	*ft_strtjoin(char *string0, char *string1, char *string2);
-
 void	error_cmd(t_info *data, char *arg, char *message);
-
 void	cmd_arg(t_info *data);
 #endif
