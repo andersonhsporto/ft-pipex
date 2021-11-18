@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/18 00:40:41 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/18 00:57:06 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	child_one(t_info *data)
 	close(data->i.pipefd[0]);
 	if (data->cmd_1 == 1)
 	{
-		execve(data->j.cmd_1, data->j.cmd_1, data->j.env);
+		execve(data->j.path_cmd_1, data->j.cmd_1, data->j.env);
 	}
 	else
 	{
@@ -50,7 +50,7 @@ void	child_two(t_info *data)
 	close(data->i.pipefd[1]);
 	close(data->i.fd_outfile);
 	if (data->cmd_2 == 1)
-		execve(data->j.cmd_2, data->j.cmd_2, data->j.env);
+		execve(data->j.path_cmd_1, data->j.cmd_2, data->j.env);
 	else
 	{
 		error_cmd(data, data->j.cmd_2[0], CMDERROR);
