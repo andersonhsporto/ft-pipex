@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/12 03:20:27 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/18 00:03:36 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 # define ARGERROR "Should be executed this way: ./pipex file1 cmd1 cmd2 file2\n"
 # define CMDERROR ": command not found\n"
+# define FILEERROR ": no such file or directory\n"
+# define PEERROR ": permission denied\n"
 
 # include <stdio.h> // REMOVER AO FINAL !!
 
@@ -32,6 +34,7 @@ enum e_cmmd
 {
 	cmd_1,
 	cmd_2,
+	file_1,
 };
 
 typedef struct s_filedes
@@ -41,12 +44,15 @@ typedef struct s_filedes
 	int	pipefd[2];
 	int	pid_1;
 	int	pid_2;
+	int	status;
+	int	permission;
 }	t_filedes;
 
 typedef struct s_strings
 {
 	char		**cmd_1;
 	char		**cmd_2;
+	char		*file1;
 	char		*path_cmd_1;
 	char		*path_cmd_2;
 	char		*temp_string;
@@ -76,5 +82,7 @@ void	find_shell(t_info *data);
 
 char	*ft_strtjoin(char *string0, char *string1, char *string2);
 
-void	error_cmd(t_info *data, int code);
+void	error_cmd(t_info *data, char *arg, char *message);
+
+void	cmd_arg(t_info *data);
 #endif

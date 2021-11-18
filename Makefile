@@ -49,7 +49,7 @@ valgrind:fclean
 	rm -rf test
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) ./libft/libft.a -o test
-	valgrind --leak-check=full --leak-resolution=med ./test file1 "ls -l" "wc -l" file2
+	valgrind --leak-check=full --show-leak-kinds=all ./test file1 "ls -l" "wc -l" file2
 
 error:fclean
 	rm -rf test
@@ -57,5 +57,5 @@ error:fclean
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) ./libft/libft.a -o test
 	valgrind --leak-check=full --leak-resolution=med ./test file1 "casa" "wc" file2
 
-test:
+t:
 	../pipex-tester/run.sh

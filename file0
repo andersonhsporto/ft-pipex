@@ -1,12 +1,1 @@
-total 36
--rw-r--r-- 1 anderson anderson 1876 nov 12 03:10 error_pipex.c
--rw-r--r-- 1 anderson anderson    0 nov 16 19:36 file0
--rw-r--r-- 1 anderson anderson    0 nov 12 03:07 file1
--rw-r--r-- 1 anderson anderson 1377 nov 14 22:43 free_pipex.c
--rw-r--r-- 1 anderson anderson 1208 nov 12 03:07 ft_strtjoin.c
-drwxr-xr-x 2 anderson anderson 4096 nov 12 03:07 includes
-drwxr-xr-x 2 anderson anderson 4096 nov 12 03:20 libft
--rw-r--r-- 1 anderson anderson 1103 nov 12 03:19 Makefile
--rw-r--r-- 1 anderson anderson 2103 nov 12 03:07 path_utils.c
--rw-r--r-- 1 anderson anderson 1704 nov 12 03:07 pipex.c
--rw-r--r-- 1 anderson anderson 1901 nov 12 03:07 pipex_utils.c
+0
