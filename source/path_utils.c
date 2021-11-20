@@ -6,76 +6,103 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:54:37 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/17 01:02:19 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/20 04:49:47 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	find_path(t_info *data, int i)
+static void	init_path_array(t_pipex *data, char **command);
+static void	init_path(t_pipex *data, char **command);
+static void	find_path(t_pipex *data, char **command);
+static void	find_shell(t_pipex *data);
+
+void	start_command(t_pipex *data, char **command)
 {
-	while (data->split_path[i])
-	{
-		data->j.path_cmd_1 = ft_strjoin(data->split_path[i], data->j.cmd_1[0]);
-		if (access(data->j.path_cmd_1, F_OK) == 0)
-		{
-			data->cmd_1 = 1;
-			break ;
-		}
-		free(data->j.path_cmd_1);
-		i++;
-	}
-	i = 0;
-	while (data->split_path[i])
-	{
-		data->j.path_cmd_2 = ft_strjoin(data->split_path[i], data->j.cmd_2[0]);
-		if (access(data->j.path_cmd_2, F_OK) == 0)
-		{
-			data->cmd_2 = 1;
-			break ;
-		}
-		free(data->j.path_cmd_2);
-		i++;
-	}
-	return ;
+	data->input.temp_cmd = command[0];
+	if (access(command[0], F_OK) == 0 && ft_strrchr(command[0], '/'))
+		execve(*command, command, data->input.envp);
+	else
+		init_path_array(data, command);
 }
 
-static void	init_path(t_info *data)
-{
-	int		i;
-	char	*temp_string;
-
-	data->split_path = ft_split(data->j.temp_string, ':');
-	i = 0;
-	while (data->split_path[i])
-	{
-		temp_string = ft_strdup(data->split_path[i]);
-		free(data->split_path[i]);
-		data->split_path[i] = ft_strjoin(temp_string, "/");
-		free(temp_string);
-		i++;
-	}
-	find_path(data, 0);
-	return ;
-}
-
-void	init_path_array(t_info *data)
+void	init_path_array(t_pipex *data, char **command)
 {
 	int	i;
 
 	i = 0;
-	data->cmd_1 = 0;
-	data->cmd_2 = 0;
-	find_shell(data);
-	while (data->j.env[i])
+	while (data->input.envp[i])
 	{
-		if (ft_memcmp(data->j.env[i], "PATH=", 5) == 0)
+		if (ft_memcmp(data->input.envp[i], "PATH=", 5) == 0)
 		{
-			data->j.temp_string = ft_strdup(ft_strchr(data->j.env[i], '=') + 1);
-			init_path(data);
+			data->input.temp_string = ft_strdup
+				(ft_strchr(data->input.envp[i], '=') + 1);
+			init_path(data, command);
 			break ;
 		}
 		i++;
 	}
 	return ;
+}
+
+static void	init_path(t_pipex *data, char **command)
+{
+	int		i;
+	char	*temp_string;
+
+	data->input.path = ft_split(data->input.temp_string, ':');
+	free(data->input.temp_string);
+	i = 0;
+	while (data->input.path[i])
+	{
+		temp_string = ft_strdup(data->input.path[i]);
+		free(data->input.path[i]);
+		data->input.path[i] = ft_strjoin(temp_string, "/");
+		free(temp_string);
+		i++;
+	}
+	find_path(data, command);
+	return ;
+}
+
+static void	find_path(t_pipex *data, char **command)
+{
+	int	i;
+
+	i = 0;
+	while (data->input.path[i])
+	{
+		data->input.temp_string = ft_strjoin
+			(data->input.path[i], data->input.temp_cmd);
+		if (!access(data->input.temp_string, F_OK))
+			execve(data->input.temp_string, command, data->input.envp);
+		free(data->input.temp_string);
+		i++;
+	}
+	find_shell(data);
+	error_cmd(data, command[0], CMDERROR);
+	free(data->input.shell);
+	free_pointer_array(data->input.path);
+	free_pointer_array(data->input.cmd1);
+	free_pointer_array(data->input.cmd2);
+	exit(127);
+}
+
+void	find_shell(t_pipex *data)
+{
+	int		i;
+	char	*temp_string;
+
+	i = 0;
+	while (data->input.envp[i])
+	{
+		if (ft_memcmp(data->input.envp[i], "SHELL=", 6) == 0)
+		{
+			temp_string = ft_strdup(ft_strrchr(data->input.envp[i], '/') + 1);
+			data->input.shell = ft_strjoin(temp_string, ": ");
+			free(temp_string);
+			break ;
+		}
+		i++;
+	}
 }

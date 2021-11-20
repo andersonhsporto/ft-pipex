@@ -5,7 +5,7 @@ CC 	 =	clang
 INCLUDE = -I ./includes
 SOURCE = ./source/
 SOURCE_UTILS = utils/
-CFLAGS = -Wall -Wextra -fsanitize=address #-Werror
+CFLAGS = -Wall -Wextra  #-Werror
 
 UTILS = $(addprefix $(SOURCE_UTILS), \
 		ft_memcmp.c ft_strdup.c ft_strtjoin.c ft_strjoin.c ft_split.c \
@@ -61,7 +61,7 @@ valgrind:fclean
 error:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
-	valgrind --leak-check=full --leak-resolution=med ./pipex file1 "casa" "wc" file2
+	valgrind --leak-check=full --show-leak-kinds=all ./pipex file1 "casa" "testea" file2
 
-t:
+t:re
 	../pipex-tester/run.sh

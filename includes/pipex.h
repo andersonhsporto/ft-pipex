@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/18 01:32:37 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/20 04:36:33 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,55 +24,64 @@
 # define CMDERROR ": command not found\n"
 # define FILEERROR ": no such file or directory\n"
 # define PEERROR ": permission denied\n"
+# define ECHILD		10
 
 # include <stdio.h> // REMOVER AO FINAL !!
 
-enum e_cmmd
+enum e_status
 {
-	cmd_1,
-	cmd_2,
-	file_1,
+	fork_success,
+	error,
 };
 
-typedef struct s_filedes
+typedef struct s_process
 {
-	int	fd_infile;
-	int	fd_outfile;
-	int	pipefd[2];
-	int	pid_1;
-	int	pid_2;
-	int	status;
-	int	permission;
-}	t_filedes;
+	pid_t	command_1;
+	pid_t	command_2;
+}	t_process;
 
-typedef struct s_strings
+typedef struct s_condition
 {
-	char		**cmd_1;
-	char		**cmd_2;
-	char		*file1;
-	char		*path_cmd_1;
-	char		*path_cmd_2;
-	char		*temp_string;
-	char		**env;
-	char		*shell;
-}	t_strings;
+	int	file1;
+	int	code;
+}	t_condition;
 
-typedef struct s_info
+typedef struct s_args
 {
-	t_filedes	i;
-	t_strings	j;
-	pid_t		child1;
-	pid_t		child2;
-	char		**split_path;
-	int			cmd_1;
-	int			cmd_2;
-}	t_info;
+	char	**argv;
+	char	**envp;
+	char	**cmd1;
+	char	**cmd2;
+	char	**path;
+	char	*shell;
+	char	*temp_string;
+	char	*temp_cmd;
+}	t_args;
 
-void	init_path_array(t_info *data);
-void	init_pipe(t_info *data);
-void	error_exit(char *message, int code);
-void	free_path(t_info *data);
-void	find_shell(t_info *data);
-void	error_cmd(t_info *data, char *arg, char *message);
-void	cmd_arg(t_info *data);
+typedef struct s_fildes
+{
+	int	infile;
+	int	outfile;
+	int	tube[2];
+}	t_fildes;
+
+typedef struct s_pipex
+{
+	t_args		input;
+	t_fildes	fd;
+	t_condition	status;
+	t_process	pid;
+}	t_pipex;
+
+//error_pipex.c
+void	print_error(char *message, int exit_code);
+void	put_error(int code);
+void	error_cmd(t_pipex *data, char *arg, char *message);
+//pipex_utils.c
+void	init_pipe(t_pipex *data);
+//path_utils.c
+void	start_command(t_pipex *data, char **command);
+
+void	free_path(t_pipex *data);
+void	free_pointer_array(char	**array);
 #endif

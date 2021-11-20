@@ -6,74 +6,62 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/18 00:57:06 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/20 04:28:22 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"pipex.h"
 
-void	error_cmd_one(t_info *data)
+void	start_cmd_one(t_pipex *data);
+void	start_cmd_two(t_pipex *data);
+
+void	init_pipe(t_pipex *data)
 {
-	if (data->i.permission == 1)
-		error_cmd(data, data->j.file1, PEERROR);
-	else
-		error_cmd(data, data->j.file1, FILEERROR);
-	close(STDIN_FILENO);
-	exit(127);
+	pipe(data->fd.tube);
+	data->pid.command_1 = fork();
+	if (data->pid.command_1 < 0)
+		put_error(10);
+	if (data->pid.command_1 == fork_success)
+		start_cmd_one(data);
+	data->pid.command_2 = fork();
+	if (data->pid.command_2 < 0)
+		put_error(10);
+	if (data->pid.command_2 == fork_success)
+		start_cmd_two(data);
+	close(data->fd.tube[0]);
+	close(data->fd.tube[1]);
+	waitpid(data->pid.command_1, &data->status.code, 0);
+	waitpid(data->pid.command_2, &data->status.code, 0);
+	return ;
 }
 
-void	child_one(t_info *data)
+void	start_cmd_one(t_pipex *data)
 {
 	int	i;
 
-	i = dup2(data->i.fd_infile, STDIN_FILENO);
+	i = dup2(data->fd.infile, STDIN_FILENO);
 	if (i < 0)
-		error_cmd_one(data);
-	dup2(data->i.pipefd[1], STDOUT_FILENO);
-	close(data->i.fd_infile);
-	close(data->i.pipefd[0]);
-	if (data->cmd_1 == 1)
 	{
-		execve(data->j.path_cmd_1, data->j.cmd_1, data->j.env);
-	}
-	else
-	{
-		error_cmd(data, data->j.cmd_1[0], CMDERROR);
+		if (data->status.file1 == 1)
+			error_cmd(data, data->input.argv[1], PEERROR);
+		else
+			error_cmd(data, data->input.argv[1], FILEERROR);
+		close(STDIN_FILENO);
 		exit(127);
 	}
+	dup2(data->fd.tube[1], STDOUT_FILENO);
+	close(data->fd.infile);
+	close(data->fd.tube[0]);
+	start_command(data, data->input.cmd1);
+	return ;
 }
 
-void	child_two(t_info *data)
+void	start_cmd_two(t_pipex *data)
 {
-	dup2(data->i.fd_outfile, STDOUT_FILENO);
-	dup2(data->i.pipefd[0], STDIN_FILENO);
-	close(data->i.pipefd[1]);
-	close(data->i.fd_outfile);
-	if (data->cmd_2 == 1)
-		execve(data->j.path_cmd_1, data->j.cmd_2, data->j.env);
-	else
-	{
-		error_cmd(data, data->j.cmd_2[0], CMDERROR);
-		exit(127);
-	}
-}
-
-void	init_pipe(t_info *data)
-{
-	pipe(data->i.pipefd);
-	data->child1 = fork();
-	if (data->child1 < 0)
-		return (perror("Fork: "));
-	if (data->child1 == 0)
-		child_one(data);
-	data->child2 = fork();
-	if (data->child2 < 0)
-		return (perror("Fork: "));
-	if (data->child2 == 0)
-		child_two(data);
-	close(data->i.pipefd[0]);
-	close(data->i.pipefd[1]);
-	waitpid(data->child1, &data->i.status, 0);
-	waitpid(data->child2, &data->i.status, 0);
+	dup2(data->fd.outfile, STDOUT_FILENO);
+	dup2(data->fd.tube[0], STDIN_FILENO);
+	close(data->fd.tube[1]);
+	close(data->fd.outfile);
+	start_command(data, data->input.cmd2);
 	return ;
 }
