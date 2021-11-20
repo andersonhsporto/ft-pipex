@@ -1,0 +1,8 @@
+total 1520
+-rw-r--r-- 1 anderson anderson       0 nov 18 00:56 file1
+-rw-r--r-- 1 anderson anderson     366 nov 19 22:12 file2
+-rw-r--r-- 1 anderson anderson       0 nov 19 22:13 file-teste
+drwxr-xr-x 2 anderson anderson    4096 nov 18 01:14 includes
+-rw-r--r-- 1 anderson anderson    1293 nov 19 22:12 Makefile
+-rwxr-xr-x 1 anderson anderson 1537104 nov 19 22:12 pipex
+drwxr-xr-x 3 anderson anderson    4096 nov 19 22:12 source

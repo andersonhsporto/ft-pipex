@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 01:15:06 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/17 23:59:25 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/11/18 19:33:15 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,7 @@ void	error_cmd(t_info *data, char *arg, char *message)
 
 void	error_exit(char *message, int code)
 {
-	if (code == 1)
-	{
-		write(STDERR_FILENO, ARGERROR, ft_strlen(ARGERROR));
-		exit(code);
-	}
+	write(STDERR_FILENO, message, ft_strlen(message));
+	exit(code);
 	return ;
-}
-
-void	ps_error(char *errno)
-{
-	perror(strerror(errno));
-	exit(EXIT_FAILURE);
 }

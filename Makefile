@@ -5,7 +5,7 @@ CC 	 =	clang
 INCLUDE = -I ./includes
 SOURCE = ./source/
 SOURCE_UTILS = utils/
-CFLAGS = -Wall -Wextra #-Werror
+CFLAGS = -Wall -Wextra -fsanitize=address #-Werror
 
 UTILS = $(addprefix $(SOURCE_UTILS), \
 		ft_memcmp.c ft_strdup.c ft_strtjoin.c ft_strjoin.c ft_split.c \
@@ -27,7 +27,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	rm -rf $(NAME)
-	make all -C ./libft
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
