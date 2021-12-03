@@ -15,7 +15,7 @@ UTILS = $(addprefix $(SOURCE_UTILS), \
 SRC =	$(addprefix $(SOURCE), \
 		$(UTILS) \
 		pipex.c pipex_utils.c path_utils.c \
-		error_pipex.c free_pipex.c init.c\
+		error_pipex.c free_pipex.c init.c \
 )
 
 .c.o:

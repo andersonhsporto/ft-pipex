@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:54:37 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/02 22:49:32 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/02 23:36:42 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,12 @@ static void	find_path(t_pipex *data, char **command)
 		free(data->input.temp_string);
 		i++;
 	}
-	find_shell(data);
-	error_cmd(data, command[0], CMDERROR);
-	free(data->input.shell);
+	if (data->status.status_error == success)
+	{
+		find_shell(data);
+		error_cmd(data, command[0], CMDERROR);
+		free(data->input.shell);
+	}
 	free_pointer_array(data->input.path);
 	free_pointer_array(data->input.cmd1);
 	free_pointer_array(data->input.cmd2);
