@@ -1,6 +1,6 @@
 NAME =	pipex
 
-CC = gcc
+CC = clang
 
 INCLUDE = -I ./includes
 SOURCE = ./source/
