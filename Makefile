@@ -5,7 +5,7 @@ CC = gcc
 INCLUDE = -I ./includes
 SOURCE = ./source/
 SOURCE_UTILS = utils/
-CFLAGS = -Wall -Wextra  #-Werror
+CFLAGS = -Wall -Wextra -Werror
 
 UTILS = $(addprefix $(SOURCE_UTILS), \
 		ft_memcmp.c ft_strdup.c ft_strtjoin.c ft_strjoin.c ft_split.c \
@@ -15,7 +15,7 @@ UTILS = $(addprefix $(SOURCE_UTILS), \
 SRC =	$(addprefix $(SOURCE), \
 		$(UTILS) \
 		pipex.c pipex_utils.c path_utils.c \
-		error_pipex.c free_pipex.c \
+		error_pipex.c free_pipex.c init.c\
 )
 
 .c.o:

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/20 04:36:33 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:53:10 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,15 @@ typedef struct s_pipex
 void	print_error(char *message, int exit_code);
 void	put_error(int code);
 void	error_cmd(t_pipex *data, char *arg, char *message);
+
 //pipex_utils.c
 void	init_pipe(t_pipex *data);
+
+//init.c
+void	init_data(t_pipex *data, char **argv, char **envp);
+
 //path_utils.c
-void	start_command(t_pipex *data, char **command);
+void	init_path_array(t_pipex *data, char **command);
 
 void	free_path(t_pipex *data);
 void	free_pointer_array(char	**array);

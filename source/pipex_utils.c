@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/02 22:35:41 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:49:55 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	start_cmd_one(t_pipex *data);
 void	start_cmd_two(t_pipex *data);
+void	start_command(t_pipex *data, char **command);
 
 void	init_pipe(t_pipex *data)
 {
@@ -64,4 +65,20 @@ void	start_cmd_two(t_pipex *data)
 	close(data->fd.outfile);
 	start_command(data, data->input.cmd2);
 	return ;
+}
+
+void	start_command(t_pipex *data, char **command)
+{
+	int	access_return;
+
+	access_return = access(command[0], F_OK);
+	data->input.temp_cmd = command[0];
+	if ((access_return == 0) && ft_strrchr(command[0], '/'))
+	{
+		execve(*command, command, data->input.envp);
+	}
+	else
+	{
+		init_path_array(data, command);
+	}
 }

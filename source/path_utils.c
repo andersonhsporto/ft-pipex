@@ -6,30 +6,15 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:54:37 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/02 22:37:37 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:49:32 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	init_path_array(t_pipex *data, char **command);
 static void	init_path(t_pipex *data, char **command);
 static void	find_path(t_pipex *data, char **command);
 static void	find_shell(t_pipex *data);
-
-void	start_command(t_pipex *data, char **command)
-{
-	int	access_return;
-
-	access_return = access(command[0], F_OK);
-	data->input.temp_cmd = command[0];
-	if ((access_return == 0) && ft_strrchr(command[0], '/'))
-	{
-		execve(*command, command, data->input.envp);
-	}
-	else
-		init_path_array(data, command);
-}
 
 void	init_path_array(t_pipex *data, char **command)
 {
