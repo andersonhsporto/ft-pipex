@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/20 04:31:03 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:34:57 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,19 @@ static void	init_data(t_pipex *data, char **argv, char **envp)
 	data->input.argv = argv;
 	data->input.envp = envp;
 	data->input.cmd1 = ft_split(argv[2], ' ');
+	if (data->input.cmd1[0] == NULL)
+	{
+		free(data->input.cmd1);
+		data->input.cmd1 = ft_split(" ", '-');
+		printf("<<< %s \n", data->input.cmd1[0]);
+	}
 	data->input.cmd2 = ft_split(argv[3], ' ');
+	if (data->input.cmd2[0] == NULL)
+	{
+		free(data->input.cmd2);
+		data->input.cmd2 = ft_split(" ", '-');
+		printf("cmd2>>> %s \n", data->input.cmd2[0]);
+	}
 	return ;
 }
 

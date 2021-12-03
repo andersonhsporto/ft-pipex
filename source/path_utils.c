@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:54:37 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/11/20 04:49:47 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:37:37 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@ static void	find_shell(t_pipex *data);
 
 void	start_command(t_pipex *data, char **command)
 {
+	int	access_return;
+
+	access_return = access(command[0], F_OK);
 	data->input.temp_cmd = command[0];
-	if (access(command[0], F_OK) == 0 && ft_strrchr(command[0], '/'))
+	if ((access_return == 0) && ft_strrchr(command[0], '/'))
+	{
 		execve(*command, command, data->input.envp);
+	}
 	else
 		init_path_array(data, command);
 }

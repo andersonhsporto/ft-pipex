@@ -50,13 +50,13 @@ push:fclean
 c:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) $(SRC) -o $(NAME)
-	./pipex file1 "ls -l" "wc -l" file2
+	./pipex file1 "ls -l" "" file2
 	cat file2
 
 valgrind:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all ./pipex file1 "ls -l" "wc -l" file2
+	valgrind --leak-check=full --show-leak-kinds=all ./pipex file1 "ls -l" "" file2
 
 error:fclean
 	rm -rf file2
