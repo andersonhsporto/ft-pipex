@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/02 23:17:52 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/03 02:28:10 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ enum e_status
 {
 	fork_success,
 	error,
-	success,
+	empty_cmd,
 	cmd_error,
 };
 

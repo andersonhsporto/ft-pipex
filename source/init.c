@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 22:54:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/02 23:18:04 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/03 02:31:30 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_data(t_pipex *data, char **argv, char **envp)
 {
 	data->status.file1 = 0;
 	data->status.code = 0;
-	data->status.status_error = success;
+	data->status.status_error = 0;
 	data->fd.infile = open(argv[1], O_RDONLY);
 	if (!access(argv[1], F_OK) && data->fd.infile < 0)
 		data->status.file1 = 1;
@@ -41,13 +41,14 @@ void	init_array(t_pipex *data, char **argv)
 	{
 		free(data->input.cmd1);
 		data->input.cmd1 = ft_split(" ", '-');
-		data->status.status_error = cmd_error;
+		data->status.status_error = empty_cmd;
 	}
 	data->input.cmd2 = ft_split(argv[3], ' ');
 	if (data->input.cmd2[0] == NULL)
 	{
 		free(data->input.cmd2);
 		data->input.cmd2 = ft_split(" ", '-');
-		data->status.status_error = cmd_error;
+		data->status.status_error = empty_cmd;
 	}
+	return ;
 }
