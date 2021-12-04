@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pipex.c                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/03 23:47:36 by anhigo-s         ###   ########.fr       */
+/*   Created: 2021/12/04 01:34:38 by anhigo-s          #+#    #+#             */
+/*   Updated: 2021/12/04 01:34:39 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"pipex.h"
+#include "utils.h"
 
-int	main(int argc, char **argv, char **envp)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	t_pipex	data;
-
-	if (argc == 5)
+	if (ft_strlen(needle) > ft_strlen(haystack))
 	{
-		init_data(&data, argv, envp);
-		init_pipe(&data);
-		free_path(&data);
-		exit(WEXITSTATUS(data.status.code));
+		return (0);
 	}
-	else
+	if (ft_strlen(needle) == 0)
 	{
-		print_error(ARGERROR, 1);
+		return ((char *)haystack);
+	}
+	while (len >= ft_strlen(needle) && *haystack != '\0')
+	{
+		if (ft_memcmp(haystack, needle, ft_strlen(needle)) == 0)
+		{
+			return ((char *)haystack);
+		}
+		haystack++;
+		len--;
 	}
 	return (0);
 }

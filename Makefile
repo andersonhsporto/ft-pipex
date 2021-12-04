@@ -10,6 +10,7 @@ CFLAGS = -Wall -Wextra -Werror
 UTILS = $(addprefix $(SOURCE_UTILS), \
 		ft_memcmp.c ft_strdup.c ft_strtjoin.c ft_strjoin.c ft_split.c \
 		ft_strlen.c ft_substr.c ft_strchr.c ft_strrchr.c ft_putstr_fd.c \
+		ft_strnstr.c \
 )
 
 SRC =	$(addprefix $(SOURCE), \
@@ -50,18 +51,18 @@ push:fclean
 c:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) $(SRC) -o $(NAME)
-	./pipex file1 "ls -l" "" file2
-	cat file2
+	./pipex file1 "tr 4 ' '" "tr ' ' 3" outfile
+	cat outfile
 
 valgrind:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all ./pipex file1 "ls -l" "" file2
+	valgrind --leak-check=full ./pipex file1 "ls -l" "" file2
 
 error:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all ./pipex file1 "casa" "testea" file2
+	valgrind --leak-check=full ./pipex file1 "casa" "testea" file2
 
 t:re
 	../pipex-tester/run.sh
