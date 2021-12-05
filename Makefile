@@ -57,7 +57,7 @@ c:fclean
 valgrind:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
-	valgrind --leak-check=full ./pipex file1 "ls -l" "" file2
+	valgrind --leak-check=full ./pipex file1 "tr 4 ' '" "tr ' ' 3" outfile
 
 error:fclean
 	rm -rf file2

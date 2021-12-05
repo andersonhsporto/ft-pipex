@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/03 02:28:10 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/04 21:14:55 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ enum e_status
 	error,
 	empty_cmd,
 	cmd_error,
+	cmd_space,
 };
 
 typedef struct s_process
@@ -47,6 +48,8 @@ typedef struct s_condition
 	int	file1;
 	int	code;
 	int	status_error;
+	int	space_cmd_first;
+	int	space_cmd_second;
 }	t_condition;
 
 typedef struct s_args
