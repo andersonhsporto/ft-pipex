@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 22:54:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/04 22:28:09 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/04 22:47:28 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ void	replace_word(char *string, char *old, char *new)
 void	split_args(t_pipex *data, char **argv)
 {
 	data->input.cmd1 = ft_split(argv[2], ' ');
+	if (data->status.space_cmd_first == cmd_space)
+		replace_word_vector(data->input.cmd1, "'&'", "' '");
 	if (data->input.cmd1[0] == NULL)
 	{
 		free(data->input.cmd1);
 		data->input.cmd1 = ft_split(" ", '-');
 		data->status.status_error = empty_cmd;
 	}
-	if (data->status.space_cmd_first == cmd_space)
-		replace_word_vector(data->input.cmd1, "'&'", "' '");
 	data->input.cmd2 = ft_split(argv[3], ' ');
 	if (data->status.space_cmd_second == cmd_space)
 		replace_word_vector(data->input.cmd2, "'&'", "' '");
@@ -97,6 +97,7 @@ void	split_args(t_pipex *data, char **argv)
 		data->input.cmd2 = ft_split(" ", '-');
 		data->status.status_error = empty_cmd;
 	}
+	return ;
 }
 
 void	replace_word_vector(char **vector, char *old, char *new)
@@ -107,7 +108,9 @@ void	replace_word_vector(char **vector, char *old, char *new)
 	while (vector[i])
 	{
 		if ((ft_strnstr(vector[i], "' '", ft_strlen(vector[i]))))
-			replace_word(vector[i], old, new);
+		{
+		}
+		replace_word(vector[i], old, new);
 		i++;
 	}
 	return ;
