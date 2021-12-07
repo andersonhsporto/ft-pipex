@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 22:54:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/06 18:51:15 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/06 21:18:19 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	init_array(t_pipex *data, char **argv)
 	if (ft_strnstr(argv[2], "' '", ft_strlen(argv[2])))
 	{
 		data->status.space_cmd_first = cmd_space;
-		replace_word(argv[2], "' '", BELL);
+		replace_word(argv[2], "' '", "'&'");
 	}
 	if (ft_strnstr(argv[3], "' '", ft_strlen(argv[3])))
 	{
 		data->status.space_cmd_second = cmd_space;
-		replace_word(argv[3], "' '", BELL);
+		replace_word(argv[3], "' '", "'&'");
 	}
 	split_args(data, argv);
 	return ;

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/06 18:53:21 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/06 21:15:25 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 
 # include "utils.h"
 
-# define ARGERROR"Should be executed this way:\n ./pipex file1 cmd1 cmd2 file2\n"
+# define ARGERR	"Should be executed this way:\n ./pipex file1 cmd1 cmd2 file2\n"
 # define CMDERROR	": command not found\n"
 # define FILEERROR	": no such file or directory\n"
 # define PEERROR	": permission denied\n"
 # define ECHILD		10
-# define BELL		7
 
 # include <stdio.h> // REMOVER AO FINAL !!
 

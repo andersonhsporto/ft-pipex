@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/03 23:47:36 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/06 21:07:52 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 	{
-		print_error(ARGERROR, 1);
+		print_error(ARGERR, 1);
 	}
 	return (0);
 }
