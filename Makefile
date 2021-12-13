@@ -5,7 +5,13 @@ CC = gcc
 INCLUDE = -I ./includes
 SOURCE = ./source/
 SOURCE_UTILS = utils/
-CFLAGS = -Wall -Wextra -Werror
+PIPE_UTILS = pipe_utils/
+CFLAGS = -Wall -Wextra -Werror -g
+
+P_UTILS = $(addprefix $(PIPE_UTILS), \
+		pipex_utils.c path_utils.c \
+		error_pipex.c free_pipex.c init.c \
+)
 
 UTILS = $(addprefix $(SOURCE_UTILS), \
 		ft_memcmp.c ft_strdup.c ft_strtjoin.c ft_strjoin.c ft_split.c \
@@ -14,9 +20,8 @@ UTILS = $(addprefix $(SOURCE_UTILS), \
 )
 
 SRC =	$(addprefix $(SOURCE), \
-		$(UTILS) \
-		ft_pipex.c pipex_utils.c path_utils.c \
-		error_pipex.c free_pipex.c init.c \
+		$(P_UTILS) $(UTILS)\
+		ft_pipex.c  \
 )
 
 .c.o:
@@ -57,7 +62,7 @@ c:fclean
 valgrind:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
-	valgrind --leak-check=full ./pipex file1 "tr 4 ' '" "tr ' ' 3" outfile
+	valgrind --leak-check=full ./pipex filex "tr e '~'" "tr '~' A" outfile
 
 error:fclean
 	rm -rf file2

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 22:54:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/06 21:18:19 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/13 19:29:28 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ void	replace_word_vector(char **vector, char *old, char *new);
 
 void	init_data(t_pipex *data, char **argv, char **envp)
 {
+	if (!access(argv[1], F_OK) && data->fd.infile < 0)
+		data->status.file1 = 1;
+	data->fd.outfile = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (data->fd.outfile < 0)
+	{
+		print_error(PEERROR, 1);
+		exit(EXIT_FAILURE);
+	}
 	init_array(data, argv);
 	data->status.file1 = 0;
 	data->status.code = 0;
@@ -28,14 +36,6 @@ void	init_data(t_pipex *data, char **argv, char **envp)
 	data->input.argv = argv;
 	data->input.envp = envp;
 	data->fd.infile = open(argv[1], O_RDONLY);
-	if (!access(argv[1], F_OK) && data->fd.infile < 0)
-		data->status.file1 = 1;
-	data->fd.outfile = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (data->fd.outfile < 0)
-	{
-		print_error(PEERROR, 1);
-		exit(EXIT_FAILURE);
-	}
 	return ;
 }
 
@@ -79,6 +79,8 @@ void	replace_word(char *string, char *old, char *new)
 
 void	split_args(t_pipex *data, char **argv)
 {
+	data->status.space_cmd_first = 0;
+	data->status.space_cmd_second = 0;
 	data->input.cmd1 = ft_split(argv[2], ' ');
 	if (data->status.space_cmd_first == cmd_space)
 		replace_word_vector(data->input.cmd1, "'&'", "' '");
