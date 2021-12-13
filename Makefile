@@ -6,7 +6,7 @@ INCLUDE = -I ./includes
 SOURCE = ./source/
 SOURCE_UTILS = utils/
 PIPE_UTILS = pipe_utils/
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 P_UTILS = $(addprefix $(PIPE_UTILS), \
 		pipex_utils.c path_utils.c \

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 22:54:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/13 19:29:28 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/13 19:51:03 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	replace_word_vector(char **vector, char *old, char *new);
 
 void	init_data(t_pipex *data, char **argv, char **envp)
 {
+	data->fd.infile = open(argv[1], O_RDONLY);
 	if (!access(argv[1], F_OK) && data->fd.infile < 0)
 		data->status.file1 = 1;
 	data->fd.outfile = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
@@ -35,7 +36,6 @@ void	init_data(t_pipex *data, char **argv, char **envp)
 	data->status.space_cmd_second = 0;
 	data->input.argv = argv;
 	data->input.envp = envp;
-	data->fd.infile = open(argv[1], O_RDONLY);
 	return ;
 }
 
@@ -57,22 +57,22 @@ void	init_array(t_pipex *data, char **argv)
 
 void	replace_word(char *string, char *old, char *new)
 {
-	int	i;
+	int	index;
 	int	j;
 	int	new_counter;
 
-	i = 0;
+	index = 0;
 	j = 0;
 	new_counter = 0;
-	while (string[i] != '\0')
+	while (string[index] != '\0')
 	{
-		while (string[i + j] == old[j])
+		while (string[index + j] == old[j])
 		{
-			string[i + j] = new[new_counter];
+			string[index + j] = new[new_counter];
 			new_counter++;
 			j++;
 		}
-		i++;
+		index++;
 	}
 	return ;
 }
@@ -104,16 +104,16 @@ void	split_args(t_pipex *data, char **argv)
 
 void	replace_word_vector(char **vector, char *old, char *new)
 {
-	int	i;
+	int	index;
 
-	i = 0;
-	while (vector[i])
+	index = 0;
+	while (vector[index])
 	{
-		if ((ft_strnstr(vector[i], "' '", ft_strlen(vector[i]))))
+		if ((ft_strnstr(vector[index], "' '", ft_strlen(vector[index]))))
 		{
 		}
-		replace_word(vector[i], old, new);
-		i++;
+		replace_word(vector[index], old, new);
+		index++;
 	}
 	return ;
 }

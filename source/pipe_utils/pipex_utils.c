@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/02 22:49:55 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/13 19:49:53 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	init_pipe(t_pipex *data)
 
 void	start_cmd_one(t_pipex *data)
 {
-	int	i;
+	int	index;
 
-	i = dup2(data->fd.infile, STDIN_FILENO);
-	if (i < 0)
+	index = dup2(data->fd.infile, STDIN_FILENO);
+	if (index < 0)
 	{
 		if (data->status.file1 == 1)
 			error_cmd(data, data->input.argv[1], PEERROR);
