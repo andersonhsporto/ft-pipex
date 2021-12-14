@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 22:54:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/13 19:51:03 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/13 23:26:31 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,27 @@ void	init_data(t_pipex *data, char **argv, char **envp)
 	data->input.argv = argv;
 	data->input.envp = envp;
 	return ;
+}
+
+int	is_space(char *string)
+{
+	int	index;
+	int	status;
+
+	index = 0;
+	status = 0;
+	while (string[index] != '\0')
+	{
+		if (string[index] == '\'')
+		{
+			status++;
+		}
+		index++;
+	}
+	if (status == 2 || status == 4)
+		return (1);
+	else
+		return (0);
 }
 
 void	init_array(t_pipex *data, char **argv)
@@ -111,8 +132,8 @@ void	replace_word_vector(char **vector, char *old, char *new)
 	{
 		if ((ft_strnstr(vector[index], "' '", ft_strlen(vector[index]))))
 		{
+			replace_word(vector[index], old, new);
 		}
-		replace_word(vector[index], old, new);
 		index++;
 	}
 	return ;

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/13 19:49:53 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/13 23:19:42 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	init_pipe(t_pipex *data)
 	pipe(data->fd.tube);
 	data->pid.command_1 = fork();
 	if (data->pid.command_1 < 0)
-		put_error(10);
+		put_error(ECHILD);
 	if (data->pid.command_1 == fork_success)
 		start_cmd_one(data);
 	data->pid.command_2 = fork();
 	if (data->pid.command_2 < 0)
-		put_error(10);
+		put_error(ECHILD);
 	if (data->pid.command_2 == fork_success)
 		start_cmd_two(data);
 	close(data->fd.tube[0]);
