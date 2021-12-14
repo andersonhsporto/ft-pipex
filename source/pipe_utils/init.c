@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 22:54:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/14 11:55:13 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 12:17:52 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	init_data(t_pipex *data, char **argv, char **envp)
 	data->status.space_cmd_first = 0;
 	data->status.space_cmd_second = 0;
 	data->status.error_child_one = 0;
-	data->status.error_child_two = 0;
 	data->input.envp = envp;
 	return ;
 }
