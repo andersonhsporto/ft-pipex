@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/06 21:15:25 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 10:44:09 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define PIPEX_H
 
 # include <fcntl.h>
-# include <sys/types.h>
 # include <sys/wait.h>
 # include <string.h>
+# include <stdio.h>
 
 # include "utils.h"
 
@@ -26,8 +26,6 @@
 # define PEERROR	": permission denied\n"
 # define ECHILD		10
 
-# include <stdio.h> // REMOVER AO FINAL !!
-
 enum e_status
 {
 	fork_success,
@@ -35,6 +33,12 @@ enum e_status
 	empty_cmd,
 	cmd_error,
 	cmd_space,
+};
+
+enum e_pipe
+{
+	pipe_read,
+	pipe_write
 };
 
 typedef struct s_process

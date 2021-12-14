@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:54:37 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/13 19:47:49 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 10:57:29 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	init_path_array(t_pipex *data, char **command)
 	{
 		if (ft_memcmp(data->input.envp[index], "PATH=", 5) == 0)
 		{
-			data->input.temp_string = ft_strdup
-				(ft_strchr(data->input.envp[index], '=') + 1);
+			data->input.temp_string = ft_strdup(ft_strchr \
+			(data->input.envp[index], '=') + 1);
 			init_path(data, command);
 			break ;
 		}
@@ -91,7 +91,8 @@ void	find_shell(t_pipex *data)
 	{
 		if (ft_memcmp(data->input.envp[index], "SHELL=", 6) == 0)
 		{
-			temp_string = ft_strdup(ft_strrchr(data->input.envp[index], '/') + 1);
+			temp_string = ft_strdup(ft_strrchr(data->input.envp[index], \
+			'/') + 1);
 			data->input.shell = ft_strjoin(temp_string, ": ");
 			free(temp_string);
 			break ;

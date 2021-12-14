@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/13 23:19:42 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 10:52:17 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ void	init_pipe(t_pipex *data)
 		put_error(ECHILD);
 	if (data->pid.command_2 == fork_success)
 		start_cmd_two(data);
-	close(data->fd.tube[0]);
-	close(data->fd.tube[1]);
+	close(data->fd.tube[pipe_write]);
+	close(data->fd.tube[pipe_read]);
+	close(data->fd.outfile);
 	waitpid(data->pid.command_1, &data->status.code, 0);
 	waitpid(data->pid.command_2, &data->status.code, 0);
 	return ;
@@ -50,19 +51,18 @@ void	start_cmd_one(t_pipex *data)
 		close(STDIN_FILENO);
 		exit(127);
 	}
-	dup2(data->fd.tube[1], STDOUT_FILENO);
+	dup2(data->fd.tube[pipe_write], STDOUT_FILENO);
 	close(data->fd.infile);
-	close(data->fd.tube[0]);
+	close(data->fd.tube[pipe_read]);
 	start_command(data, data->input.cmd1);
 	return ;
 }
 
 void	start_cmd_two(t_pipex *data)
 {
+	dup2(data->fd.tube[pipe_read], STDIN_FILENO);
 	dup2(data->fd.outfile, STDOUT_FILENO);
-	dup2(data->fd.tube[0], STDIN_FILENO);
-	close(data->fd.tube[1]);
-	close(data->fd.outfile);
+	close(data->fd.tube[pipe_write]);
 	start_command(data, data->input.cmd2);
 	return ;
 }
