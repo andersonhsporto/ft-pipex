@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 01:14:58 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/04 01:35:15 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 02:53:19 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char	*ft_strtrim(char const *s1, char const *set);
 
 #endif

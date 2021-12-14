@@ -16,7 +16,7 @@ P_UTILS = $(addprefix $(PIPE_UTILS), \
 UTILS = $(addprefix $(SOURCE_UTILS), \
 		ft_memcmp.c ft_strdup.c ft_strtjoin.c ft_strjoin.c ft_split.c \
 		ft_strlen.c ft_substr.c ft_strchr.c ft_strrchr.c ft_putstr_fd.c \
-		ft_strnstr.c \
+		ft_strnstr.c ft_strtrim.c \
 )
 
 SRC =	$(addprefix $(SOURCE), \
@@ -56,8 +56,9 @@ push:fclean
 c:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) $(SRC) -o $(NAME)
-	./pipex file1 "tr 4 ' '" "tr ' ' 3" outfile
-	cat outfile
+	cat file1
+	./pipex file1 "tr a b" "tr e ' '" file2
+	cat file2
 
 valgrind:fclean
 	rm -rf file2
