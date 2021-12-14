@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pipex.c                                         :+:      :+:    :+:   */
+/*   init_arg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/14 12:12:30 by anhigo-s         ###   ########.fr       */
+/*   Created: 2021/12/14 11:53:16 by anhigo-s          #+#    #+#             */
+/*   Updated: 2021/12/14 11:53:43 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"pipex.h"
+#include "pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+void	init_arg_cmd(t_pipex *data)
 {
-	t_pipex	data;
-
-	if (argc == 5)
+	data->input.cmd2 = ft_split(data->input.argv[3], ' ');
+	replace_word(data->input.cmd2);
+	if (data->input.cmd2[0] == NULL)
 	{
-		init_data(&data, argv, envp);
-		init_pipe(&data);
-		if (data.status.error_child_one == 0)
-		{
-			free_pointer_array(data.input.cmd1);
-		}
-		exit(WEXITSTATUS(data.status.code));
+		free(data->input.cmd2);
+		data->input.cmd2 = ft_split(" ", '-');
+		data->status.status_error = empty_cmd;
 	}
-	else
-	{
-		print_error(ARGERR, 1);
-	}
-	return (0);
+	return ;
 }

@@ -10,7 +10,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 P_UTILS = $(addprefix $(PIPE_UTILS), \
 		pipex_utils.c path_utils.c \
-		error_pipex.c free_pipex.c init.c \
+		error_pipex.c free_pipex.c \
+		init.c shell.c init_arg.c \
 )
 
 UTILS = $(addprefix $(SOURCE_UTILS), \
@@ -63,12 +64,12 @@ c:fclean
 valgrind:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
-	valgrind --leak-check=full ./pipex filex "tr e '~'" "tr '~' A" outfile
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes ./pipex file1 "ls -l" "wc -l" file2
 
 error:fclean
 	rm -rf file2
 	$(CC) $(CFLAGS) $(INCLUDE) -g $(SRC) -o $(NAME)
-	valgrind --leak-check=full ./pipex file1 "casa" "testea" file2
+	valgrind --leak-check=full --show-leak-kinds=all ./pipex file1 "casa" "testea" file2
 
 t:re
 	../pipex-tester/run.sh

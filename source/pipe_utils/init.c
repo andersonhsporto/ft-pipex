@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 22:54:39 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/14 02:55:47 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 11:55:13 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int		is_space(char *string);
 void	scan_arg(t_pipex *data, int status);
 void	split_args(t_pipex *data, char **argv);
-void	replace_word(char **command);
 
 void	init_data(t_pipex *data, char **argv, char **envp)
 {
@@ -37,6 +36,8 @@ void	init_data(t_pipex *data, char **argv, char **envp)
 	data->status.status_error = 0;
 	data->status.space_cmd_first = 0;
 	data->status.space_cmd_second = 0;
+	data->status.error_child_one = 0;
+	data->status.error_child_two = 0;
 	data->input.envp = envp;
 	return ;
 }
@@ -101,14 +102,6 @@ void	split_args(t_pipex *data, char **argv)
 		data->input.cmd1 = ft_split(" ", '-');
 		data->status.status_error = empty_cmd;
 	}
-	data->input.cmd2 = ft_split(argv[3], ' ');
-	replace_word(data->input.cmd2);
-	if (data->input.cmd2[0] == NULL)
-	{
-		free(data->input.cmd2);
-		data->input.cmd2 = ft_split(" ", '-');
-		data->status.status_error = empty_cmd;
-	}
 	return ;
 }
 
@@ -140,42 +133,3 @@ void	replace_word(char **command)
 		}
 	}
 }
-
-// void	replace_word(char *string, char *old, char *new)
-// {
-// 	int	index;
-// 	int	j_index;
-// 	int	new_counter;
-
-// 	index = 0;
-// 	j_index = 0;
-// 	new_counter = 0;
-// 	while (string[index] != '\0')
-// 	{
-// 		while (string[index + j_index] == old[j_index])
-// 		{
-// 			string[index + j_index] = new[new_counter];
-// 			new_counter++;
-// 			j_index++;
-// 		}
-// 		index++;
-// 	}
-// 	return ;
-// }
-
-// void	replace_word_vector(char **vector, char *old, char *new)
-// {
-// 	int	index;
-
-// 	index = 0;
-// 	while (vector[index])
-// 	{
-// 		if ((ft_strnstr(vector[index], "' '", ft_strlen(vector[index]))))
-// 		{
-// 			replace_word(vector[index], old, new);
-// 		}
-// 		index++;
-// 	}
-// 	return ;
-// }
-

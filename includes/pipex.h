@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/14 10:44:09 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 12:04:46 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_condition
 	int	status_error;
 	int	space_cmd_first;
 	int	space_cmd_second;
+	int	error_child_one;
+	int	error_child_two;
 }	t_condition;
 
 typedef struct s_args
@@ -93,10 +95,15 @@ void	init_pipe(t_pipex *data);
 
 //init.c
 void	init_data(t_pipex *data, char **argv, char **envp);
+void	replace_word(char **command);
 
 //path_utils.c
 void	init_path_array(t_pipex *data, char **command);
 
-void	free_path(t_pipex *data);
 void	free_pointer_array(char	**array);
+
+void	find_shell(t_pipex *data);
+
+void	init_arg_cmd(t_pipex *data);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 00:54:37 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/14 10:57:29 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 11:28:57 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	init_path(t_pipex *data, char **command);
 static void	find_path(t_pipex *data, char **command);
-static void	find_shell(t_pipex *data);
 
 void	init_path_array(t_pipex *data, char **command)
 {
@@ -71,7 +70,6 @@ static void	find_path(t_pipex *data, char **command)
 	}
 	if (data->status.status_error != empty_cmd)
 	{
-		find_shell(data);
 		error_cmd(data, command[0], CMDERROR);
 		free(data->input.shell);
 	}
@@ -79,25 +77,4 @@ static void	find_path(t_pipex *data, char **command)
 	free_pointer_array(data->input.cmd1);
 	free_pointer_array(data->input.cmd2);
 	exit(127);
-}
-
-void	find_shell(t_pipex *data)
-{
-	int		index;
-	char	*temp_string;
-
-	index = 0;
-	while (data->input.envp[index])
-	{
-		if (ft_memcmp(data->input.envp[index], "SHELL=", 6) == 0)
-		{
-			temp_string = ft_strdup(ft_strrchr(data->input.envp[index], \
-			'/') + 1);
-			data->input.shell = ft_strjoin(temp_string, ": ");
-			free(temp_string);
-			break ;
-		}
-		index++;
-	}
-	return ;
 }

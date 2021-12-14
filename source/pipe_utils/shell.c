@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pipex.c                                         :+:      :+:    :+:   */
+/*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 21:26:15 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/14 12:12:30 by anhigo-s         ###   ########.fr       */
+/*   Created: 2021/12/14 11:26:31 by anhigo-s          #+#    #+#             */
+/*   Updated: 2021/12/14 11:26:33 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+void	find_shell(t_pipex *data)
 {
-	t_pipex	data;
+	int		index;
+	char	*temp_string;
 
-	if (argc == 5)
+	index = 0;
+	while (data->input.envp[index])
 	{
-		init_data(&data, argv, envp);
-		init_pipe(&data);
-		if (data.status.error_child_one == 0)
+		if (ft_memcmp(data->input.envp[index], "SHELL=", 6) == 0)
 		{
-			free_pointer_array(data.input.cmd1);
+			temp_string = ft_strdup(ft_strrchr(data->input.envp[index], \
+			'/') + 1);
+			data->input.shell = ft_strjoin(temp_string, ": ");
+			free(temp_string);
+			break ;
 		}
-		exit(WEXITSTATUS(data.status.code));
+		index++;
 	}
-	else
-	{
-		print_error(ARGERR, 1);
-	}
-	return (0);
+	return ;
 }

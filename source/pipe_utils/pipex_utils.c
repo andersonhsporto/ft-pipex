@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 02:57:54 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/14 10:52:17 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 11:54:39 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,13 @@ void	start_cmd_one(t_pipex *data)
 			error_cmd(data, data->input.argv[1], PEERROR);
 		else
 			error_cmd(data, data->input.argv[1], FILEERROR);
+		data->status.error_child_one = 1;
+		free_pointer_array(data->input.cmd1);
+		free(data->input.shell);
 		close(STDIN_FILENO);
 		exit(127);
 	}
+	data->status.error_child_one = 0;
 	dup2(data->fd.tube[pipe_write], STDOUT_FILENO);
 	close(data->fd.infile);
 	close(data->fd.tube[pipe_read]);
@@ -63,6 +67,7 @@ void	start_cmd_two(t_pipex *data)
 	dup2(data->fd.tube[pipe_read], STDIN_FILENO);
 	dup2(data->fd.outfile, STDOUT_FILENO);
 	close(data->fd.tube[pipe_write]);
+	init_arg_cmd(data);
 	start_command(data, data->input.cmd2);
 	return ;
 }

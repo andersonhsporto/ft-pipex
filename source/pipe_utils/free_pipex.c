@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 02:28:50 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/13 19:50:13 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2021/12/14 12:04:37 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,5 @@ void	free_pointer_array(char	**array)
 		index++;
 	}
 	free(array);
-	return ;
-}
-
-void	free_path(t_pipex *data)
-{
-	free_pointer_array(data->input.cmd1);
-	free_pointer_array(data->input.cmd2);
 	return ;
 }
