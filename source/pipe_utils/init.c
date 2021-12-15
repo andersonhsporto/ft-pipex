@@ -12,7 +12,6 @@
 
 #include "pipex.h"
 
-int		is_space(char *string);
 void	scan_arg(t_pipex *data, int status);
 void	split_args(t_pipex *data, char **argv);
 
@@ -39,27 +38,6 @@ void	init_data(t_pipex *data, char **argv, char **envp)
 	data->status.error_child_one = 0;
 	data->input.envp = envp;
 	return ;
-}
-
-int	is_space(char *string)
-{
-	int	index;
-	int	status;
-
-	index = 0;
-	status = 0;
-	while (string[index] != '\0')
-	{
-		if (string[index] == '\'')
-		{
-			status++;
-		}
-		index++;
-	}
-	if (status == 2 || status == 4)
-		return (1);
-	else
-		return (0);
 }
 
 void	scan_arg(t_pipex *data, int status)
