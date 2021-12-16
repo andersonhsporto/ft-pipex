@@ -1,5 +1,5 @@
 # Pipex
-### O objetivo deste projeto é reproduzir o comportamento de redirecionamento utilizando pipe " | ".
+### O objetivo deste projeto é reproduzir o comportamento de redirecionamento utilizando pipe " | " em C.
 ## Funções Permitidas
 
 As funções permitidas no escopo deste projeto são:
@@ -38,5 +38,3 @@ Após compilado utilizando **make**, o programa deve ser executado da seguinte f
 
 ## REFERÊNCIAS
 * Informação Adicional - [Pipe](https://www.ppgia.pucpr.br/pt/arquivos/techdocs/linux/foca-iniciante/ch-redir.html)
-
-
