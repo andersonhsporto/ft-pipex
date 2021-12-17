@@ -1,5 +1,4 @@
 # Pipex
-![norminette](https://github.com/andersonhsporto/ft-pipex/workflows/main/badge.svg)
 ### O objetivo deste projeto é reproduzir o comportamento de redirecionamento utilizando pipe " | " em C.
 ## Funções Permitidas
 
