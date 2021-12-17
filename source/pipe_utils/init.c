@@ -17,15 +17,6 @@ void	split_args(t_pipex *data, char **argv);
 
 void	init_data(t_pipex *data, char **argv, char **envp)
 {
-	data->fd.infile = open(argv[1], O_RDONLY);
-	if (!access(argv[1], F_OK) && data->fd.infile < 0)
-		data->status.file1 = 1;
-	data->fd.outfile = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (data->fd.outfile < 0)
-	{
-		print_error(PEERROR, 1);
-		exit(EXIT_FAILURE);
-	}
 	data->input.argv = argv;
 	scan_arg(data, 2);
 	scan_arg(data, 3);
@@ -37,6 +28,15 @@ void	init_data(t_pipex *data, char **argv, char **envp)
 	data->status.space_cmd_second = 0;
 	data->status.error_child_one = 0;
 	data->input.envp = envp;
+	data->fd.infile = open(argv[1], O_RDONLY);
+	if (!access(argv[1], F_OK) && data->fd.infile < 0)
+		data->status.file1 = 1;
+	data->fd.outfile = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (data->fd.outfile < 0)
+	{
+		print_error(PEERROR, 1);
+		exit(EXIT_FAILURE);
+	}
 	return ;
 }
 
