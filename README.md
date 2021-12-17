@@ -30,7 +30,7 @@ O programa simula o comportamento do seguinte comando no “shell”: (cmd1 e cm
 ```sh
 < arquivo_input cmd1 | cmd2 > arquivo_output
 ```
-Após compilado utilizando **make**, o programa deve ser executado da seguinte forma:
+Compile o programa utilizando **make**, o programa deve ser executado da seguinte forma:
 ```sh
 ./pipex arquivo_input "cmd1" "cmd2" arquivo_output
 ```
