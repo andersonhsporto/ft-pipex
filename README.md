@@ -28,13 +28,12 @@ As funções permitidas no escopo deste projeto são:
 • exit
 ```
 O programa simula o comportamento do seguinte comando no “shell”: (cmd1 e cmd2 são comandos do “shell” e suas respectivas flags).
-```sh
-< arquivo_input cmd1 | cmd2 > arquivo_output
-```
+
+<img src="https://github.com/andersonhsporto/ft-pipex/blob/main/img/Bash.png" width="400" height=auto/>
+
 Compile o programa utilizando **make**, o programa deve ser executado da seguinte forma:
-```sh
-./pipex arquivo_input "cmd1" "cmd2" arquivo_output
-```
+<img src="https://github.com/andersonhsporto/ft-pipex/blob/main/img/Bash2.png" width="400" height=auto/>
+
 
 ##
 
