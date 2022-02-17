@@ -29,10 +29,10 @@ As funções permitidas no escopo deste projeto são:
 ```
 O programa simula o comportamento do seguinte comando no “shell”: (cmd1 e cmd2 são comandos do “shell” e suas respectivas flags).
 
-<img src="https://github.com/andersonhsporto/ft-pipex/blob/main/img/Bash.png" width="400" height=auto/>
+<img src="https://github.com/andersonhsporto/ft-pipex/blob/master/img/0-bash.png" width="500" height=auto/>
 
 Compile o programa utilizando **make**, o programa deve ser executado da seguinte forma:
-<img src="https://github.com/andersonhsporto/ft-pipex/blob/main/img/Bash2.png" width="400" height=auto/>
+<img src="https://github.com/andersonhsporto/ft-pipex/blob/master/img/1-bash.png" width="500" height=auto/>
 
 
 ##
