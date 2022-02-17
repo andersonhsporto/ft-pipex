@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 02:23:33 by anhigo-s          #+#    #+#             */
-/*   Updated: 2022/02/17 03:08:59 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/02/17 03:14:33 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,3 @@ char	*replace_word(char *cmd, char one, char two)
 	}
 	return (string);
 }
-
-// int main(void)
-// {
-// 	char *teste = "teste ' '";
-
-// 	char *casa = replace_word(teste, ' ', 'f');
-// 	printf("%s", casa);
-// }
