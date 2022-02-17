@@ -6,12 +6,12 @@ INCLUDE = -I ./includes
 SOURCE = ./source/
 SOURCE_UTILS = utils/
 PIPE_UTILS = pipe_utils/
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 P_UTILS = $(addprefix $(PIPE_UTILS), \
 		pipex_utils.c path_utils.c \
 		error_pipex.c free_pipex.c \
-		init.c shell.c init_arg.c \
+		init.c shell.c init_arg.c convert.c \
 )
 
 UTILS = $(addprefix $(SOURCE_UTILS), \

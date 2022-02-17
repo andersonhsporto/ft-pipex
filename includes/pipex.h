@@ -6,7 +6,7 @@
 /*   By: anhigo-s <anhigo-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 21:50:41 by anhigo-s          #+#    #+#             */
-/*   Updated: 2021/12/14 12:16:59 by anhigo-s         ###   ########.fr       */
+/*   Updated: 2022/02/17 02:35:35 by anhigo-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void	error_cmd(t_pipex *data, char *arg, char *message);
 void	init_pipe(t_pipex *data);
 
 void	init_data(t_pipex *data, char **argv, char **envp);
-void	replace_word(char **command);
+char	*replace_word(char *cmd, char one, char two);
+void	invert_word(char **matrix);
 
 void	init_path_array(t_pipex *data, char **command);
 
