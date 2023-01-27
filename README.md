@@ -1,5 +1,5 @@
 # Pipex
-![norminette](https://github.com/andersonhsporto/ft-pipex/workflows/norminette/badge.svg)
+
 ### O objetivo deste projeto é reproduzir o comportamento de redirecionamento e pipe " | " utilizando C
 <hr>
 ## Funções Permitidas
@@ -38,6 +38,11 @@ Compile o programa utilizando **make**, o programa deve ser executado da seguint
 ##
 
 
+## Estilo de código
+
+O estilo de código utilizado neste projeto é o [Norminette](https://github.com/42School/norminette) criado pela escola 42.
+
+![norminette](https://github.com/andersonhsporto/ft-pipex/workflows/norminette/badge.svg)
 
 ## REFERÊNCIAS
-* Informação Adicional - [Pipe](https://www.ppgia.pucpr.br/pt/arquivos/techdocs/linux/foca-iniciante/ch-redir.html)
+* [Redirecionamentos e Pipe](https://www.ppgia.pucpr.br/pt/arquivos/techdocs/linux/foca-iniciante/ch-redir.html)
